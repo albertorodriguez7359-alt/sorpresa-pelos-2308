@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff4f87" />
+  <title>Feliz cumpleaños, mi amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="background-hearts" id="backgroundHearts" aria-hidden="true"></div>
+
+  <button class="music-button" id="musicButton" aria-label="Activar o pausar música" title="Música">
+    <span id="musicIcon">♫</span>
+  </button>
+  <audio id="birthdayMusic" loop>
+    <source src="assets/cancion.mp3" type="audio/mpeg" />
+  </audio>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <span class="brand">PARA MI PERSONA FAVORITA</span>
+      <span class="mini-heart">♡</span>
+    </header>
+
+    <section class="screen active" id="lockScreen">
+      <div class="glass-card lock-card">
+        <div class="floating-hearts" aria-hidden="true"></div>
+
+        <div class="lock-wrap" id="lockWrap">
+          <div class="lock-shackle"></div>
+          <div class="lock-body">
+            <div class="keyhole"></div>
+          </div>
+        </div>
+
+        <p class="eyebrow">Una sorpresa hecha especialmente para ti</p>
+        <h1>Abre mi corazón</h1>
+        <p class="subtitle">Escribe tu fecha de cumpleaños</p>
+
+        <div class="date-display" id="dateDisplay" aria-live="polite">DD / MM</div>
+
+        <div class="keypad" aria-label="Teclado numérico">
+          <button data-number="1">1</button>
+          <button data-number="2">2</button>
+          <button data-number="3">3</button>
+          <button data-number="4">4</button>
+          <button data-number="5">5</button>
+          <button data-number="6">6</button>
+          <button data-number="7">7</button>
+          <button data-number="8">8</button>
+          <button data-number="9">9</button>
+          <button class="secondary" id="clearButton" aria-label="Borrar">⌫</button>
+          <button data-number="0">0</button>
+          <button class="confirm" id="confirmButton" aria-label="Confirmar">♥</button>
+        </div>
+
+        <p class="status-message" id="statusMessage"></p>
+        <button class="tiny-link" id="demoButton">Ver demostración</button>
+      </div>
+    </section>
+
+    <section class="screen" id="birthdayScreen">
+      <div class="celebration" id="celebration" aria-hidden="true"></div>
+
+      <div class="hero-card glass-card">
+        <p class="eyebrow reveal">Hoy celebramos que existes</p>
+        <h2 class="birthday-title reveal">¡Feliz cumpleaños,<br><span id="girlfriendName">mi amor</span>!</h2>
+        <p class="birthday-message reveal" id="mainMessage">
+          Gracias por llenar mis días de alegría, ternura y momentos que siempre quiero guardar.
+          Deseo que este nuevo año de vida te regale todo lo bonito que mereces.
+        </p>
+
+        <div class="cake reveal" aria-label="Pastel de cumpleaños">
+          <div class="candle"><span class="flame"></span></div>
+          <div class="cake-top"></div>
+          <div class="cake-base"><span>♥</span></div>
+          <div class="cake-plate"></div>
+        </div>
+
+        <button class="primary-button reveal" id="continueButton">Continuar la sorpresa</button>
+      </div>
+    </section>
+
+    <section class="screen" id="memoriesScreen">
+      <div class="content-card glass-card">
+        <p class="eyebrow">Nuestra pequeña historia</p>
+        <h2>Momentos que amo contigo</h2>
+
+        <div class="gallery">
+          <figure class="photo-card rotate-left">
+            <div class="photo-placeholder photo-one">
+              <img src="assets/foto1.jpeg" alt="Nuestro recuerdo favorito 1" onerror="this.style.display='none'">
+              <span>Foto 1</span>
+            </div>
+            <figcaption>Tu sonrisa favorita</figcaption>
+          </figure>
+
+          <figure class="photo-card rotate-right">
+            <div class="photo-placeholder photo-two">
+              <img src="assets/foto2.jpeg" alt="Nuestro recuerdo favorito 2" onerror="this.style.display='none'">
+              <span>Foto 2</span>
+            </div>
+            <figcaption>Un día inolvidable</figcaption>
+          </figure>
+
+          <figure class="photo-card rotate-left">
+            <div class="photo-placeholder photo-three">
+              <img src="assets/foto3.jpeg" alt="Nuestro recuerdo favorito 3" onerror="this.style.display='none'">
+              <span>Foto 3</span>
+            </div>
+            <figcaption>Nosotros siendo nosotros</figcaption>
+          </figure>
+        </div>
+
+        <div class="reasons-box">
+          <h3>Algunas razones por las que te amo</h3>
+          <div class="reason" data-reason="Tu forma de hacer especial cualquier momento.">Toca para descubrir una razón</div>
+          <div class="reason" data-reason="La paz que siento cuando estoy contigo.">Toca para descubrir otra</div>
+          <div class="reason" data-reason="Tu corazón, tu fuerza y esa sonrisa que me encanta.">Y una más...</div>
+        </div>
+
+        <button class="primary-button" id="letterButton">Leer mi carta</button>
+      </div>
+    </section>
+
+    <section class="screen" id="letterScreen">
+      <div class="letter-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-back"></div>
+          <div class="letter-paper">
+            <p class="letter-date" id="letterDate">En tu cumpleaños</p>
+            <h2>Para ti, con todo mi amor</h2>
+            <p id="letterText">
+              Hoy no solo celebro tu cumpleaños; celebro la suerte de coincidir contigo. Me encanta compartir mi vida a tu lado, acompañarte en tus sueños y admirar la persona tan hermosa que eres. Espero que nunca olvides cuánto te quiero y lo importante que eres para mí. Que este nuevo año esté lleno de aventuras, metas cumplidas, risas y muchísimos momentos juntos.
+            </p>
+            <p class="signature">Con amor,<br><span id="senderName">tu novio</span> ♥</p>
+          </div>
+          <div class="envelope-front"></div>
+          <div class="envelope-flap"></div>
+          <div class="seal">♥</div>
+        </div>
+        <p class="tap-hint" id="tapHint">Toca el sobre para abrirlo</p>
+        <button class="primary-button hidden" id="finalButton">Una última cosa</button>
+      </div>
+    </section>
+
+    <section class="screen" id="finalScreen">
+      <div class="final-card glass-card">
+        <div class="big-heart">♥</div>
+        <p class="eyebrow">Mi deseo para ti</p>
+        <h2>Que todos tus sueños encuentren el camino hacia ti.</h2>
+        <p>
+          Prometo seguir celebrando tus alegrías, acompañándote en los días difíciles y creando contigo recuerdos que valgan toda una vida.
+        </p>
+        <div class="final-line">Feliz cumpleaños, preciosa ♥</div>
+        <button class="secondary-button" id="restartButton">Volver al inicio</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
