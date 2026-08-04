@@ -300,23 +300,163 @@ h1 {
 .reason:hover { transform: translateX(4px); }
 .reason.revealed { background: #fff; color: var(--pink-900); font-weight: 600; }
 
-.letter-wrapper { width: min(100%, 650px); text-align: center; padding: 90px 0 30px; }
-.envelope { position: relative; width: min(92vw, 520px); height: 320px; margin: 0 auto; cursor: pointer; perspective: 1200px; }
-.envelope-back { position: absolute; inset: 0; border-radius: 14px; background: #e92f70; box-shadow: var(--shadow); }
-.envelope-front { position: absolute; inset: 0; z-index: 4; clip-path: polygon(0 35%,50% 72%,100% 35%,100% 100%,0 100%); background: linear-gradient(145deg,#ff85a9,#e53673); border-radius: 0 0 14px 14px; }
-.envelope-flap { position: absolute; inset: 0; z-index: 5; clip-path: polygon(0 0,100% 0,50% 62%); background: #ff9db9; transform-origin: top; transition: transform .8s ease, z-index .2s .4s; border-radius: 14px 14px 0 0; }
-.seal { position: absolute; z-index: 6; left: 50%; top: 49%; width: 48px; height: 48px; transform: translate(-50%,-50%); display: grid; place-items: center; border-radius: 50%; color: white; background: #b8124d; transition: opacity .3s ease; }
-.letter-paper { position: absolute; z-index: 3; left: 7%; width: 86%; min-height: 410px; bottom: 18px; padding: 30px 28px; text-align: left; border-radius: 12px; background: #fffaf7; box-shadow: 0 12px 35px rgba(98, 14, 48, .18); transition: transform 1s cubic-bezier(.2,.8,.2,1); }
-.letter-paper h2 { margin: 4px 0 14px; font-family: "Dancing Script", cursive; color: var(--pink-900); font-size: 2.3rem; }
-.letter-paper p { line-height: 1.7; font-size: .88rem; }
-.letter-date { color: #a75b75; font-size: .76rem !important; }
-.signature { text-align: right; font-family: "Dancing Script", cursive; font-size: 1.35rem !important; color: var(--pink-900); }
-.envelope.open .envelope-flap { transform: rotateX(180deg); z-index: 2; }
-.envelope.open .seal { opacity: 0; }
-.envelope.open .letter-paper { transform: translateY(-210px); z-index: 6; }
-.tap-hint { margin-top: 20px; color: white; font-weight: 600; text-shadow: 0 2px 10px rgba(86, 9, 42, .4); }
-.hidden { display: none; }
-#finalButton { margin-top: 18px; }
+.letter-wrapper {
+  width: min(100%, 650px);
+  min-height: calc(100vh - 90px);
+  padding: 195px 0 55px;
+  text-align: center;
+}
+
+#letterScreen {
+  place-items: start center;
+  overflow-y: auto;
+}
+
+.envelope {
+  position: relative;
+  width: min(92vw, 520px);
+  height: 320px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: #e92f70;
+  box-shadow: var(--shadow);
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  clip-path: polygon(0 35%,50% 72%,100% 35%,100% 100%,0 100%);
+  background: linear-gradient(145deg,#ff85a9,#e53673);
+  border-radius: 0 0 14px 14px;
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  clip-path: polygon(0 0,100% 0,50% 62%);
+  background: #ff9db9;
+  transform-origin: top;
+  transition: transform .8s ease, z-index .2s .4s;
+  border-radius: 14px 14px 0 0;
+}
+
+.seal {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 49%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%,-50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: #b8124d;
+  transition: opacity .3s ease;
+}
+
+/*
+  La hoja ahora se posiciona desde arriba, no desde abajo.
+  Esto evita que una carta alta se salga de la pantalla.
+*/
+.letter-paper {
+  position: absolute;
+  z-index: 3;
+  top: 18px;
+  bottom: auto;
+  left: 7%;
+  width: 86%;
+  height: min(500px, 62vh);
+  min-height: 0;
+  max-height: 500px;
+  padding: 30px 28px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #e95383 #ffe3ec;
+  text-align: left;
+  border-radius: 12px;
+  background: #fffaf7;
+  box-shadow: 0 12px 35px rgba(98, 14, 48, .18);
+  transition: transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.letter-paper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.letter-paper::-webkit-scrollbar-track {
+  background: #ffe3ec;
+  border-radius: 999px;
+}
+
+.letter-paper::-webkit-scrollbar-thumb {
+  background: #e95383;
+  border-radius: 999px;
+}
+
+.letter-paper h2 {
+  margin: 4px 0 14px;
+  font-family: "Dancing Script", cursive;
+  color: var(--pink-900);
+  font-size: 2.3rem;
+}
+
+.letter-paper p {
+  line-height: 1.7;
+  font-size: .88rem;
+}
+
+.letter-date {
+  color: #a75b75;
+  font-size: .76rem !important;
+}
+
+.signature {
+  text-align: right;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.35rem !important;
+  color: var(--pink-900);
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 2;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+}
+
+.envelope.open .letter-paper {
+  transform: translateY(-170px);
+  z-index: 6;
+}
+
+.tap-hint {
+  margin-top: 20px;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(86, 9, 42, .4);
+}
+
+.hidden {
+  display: none;
+}
+
+#finalButton {
+  margin-top: 18px;
+}
 
 .final-card { padding: 46px 28px; text-align: center; }
 .big-heart { font-size: 6rem; color: var(--pink-500); animation: pulse 1.5s infinite; text-shadow: 0 12px 26px rgba(226,39,105,.28); }
@@ -352,67 +492,20 @@ h1 {
   .lock-card, .hero-card { padding-left: 18px; padding-right: 18px; }
   .gallery { grid-template-columns: 1fr; max-width: 270px; gap: 22px; }
   .photo-card { transform: rotate(0); }
-  .envelope { height: 260px; }
-  .letter-paper { min-height: 430px; padding: 24px 20px; }
-  .envelope.open .letter-paper { transform: translateY(-245px); }
-  .letter-wrapper { padding-top: 160px; padding-bottom: 40px; }
-}
-/* =====================================================
-   CORRECCIÓN: CARTA COMPLETA Y ADAPTABLE
-   ===================================================== */
-
-#letterScreen {
-  overflow-y: auto;
-  align-items: start;
-}
-
-.letter-wrapper {
-  width: min(100%, 650px);
-  min-height: calc(100vh - 90px);
-  padding: 210px 0 60px;
-  box-sizing: border-box;
-}
-
-.letter-paper {
-  box-sizing: border-box;
-  min-height: 0;
-  height: min(560px, 68vh);
-  max-height: 560px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: #e95383 #ffe3ec;
-}
-
-.letter-paper::-webkit-scrollbar {
-  width: 8px;
-}
-
-.letter-paper::-webkit-scrollbar-track {
-  background: #ffe3ec;
-  border-radius: 999px;
-}
-
-.letter-paper::-webkit-scrollbar-thumb {
-  background: #e95383;
-  border-radius: 999px;
-}
-
-.envelope.open .letter-paper {
-  transform: translateY(-190px);
-}
-
-@media (max-width: 620px) {
   .letter-wrapper {
     min-height: calc(100vh - 70px);
-    padding: 190px 0 70px;
+    padding: 170px 0 50px;
+  }
+
+  .envelope {
+    height: 260px;
   }
 
   .letter-paper {
     left: 4%;
     width: 92%;
-    height: min(520px, 64vh);
-    max-height: 520px;
+    height: min(460px, 60vh);
+    max-height: 460px;
     padding: 22px 18px;
   }
 
@@ -421,11 +514,12 @@ h1 {
   }
 
   .letter-paper p {
-    font-size: 0.84rem;
+    font-size: .84rem;
     line-height: 1.6;
   }
 
   .envelope.open .letter-paper {
-    transform: translateY(-175px);
+    transform: translateY(-145px);
   }
 }
+
