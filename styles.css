@@ -357,3 +357,75 @@ h1 {
   .envelope.open .letter-paper { transform: translateY(-245px); }
   .letter-wrapper { padding-top: 160px; padding-bottom: 40px; }
 }
+/* =====================================================
+   CORRECCIÓN: CARTA COMPLETA Y ADAPTABLE
+   ===================================================== */
+
+#letterScreen {
+  overflow-y: auto;
+  align-items: start;
+}
+
+.letter-wrapper {
+  width: min(100%, 650px);
+  min-height: calc(100vh - 90px);
+  padding: 210px 0 60px;
+  box-sizing: border-box;
+}
+
+.letter-paper {
+  box-sizing: border-box;
+  min-height: 0;
+  height: min(560px, 68vh);
+  max-height: 560px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #e95383 #ffe3ec;
+}
+
+.letter-paper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.letter-paper::-webkit-scrollbar-track {
+  background: #ffe3ec;
+  border-radius: 999px;
+}
+
+.letter-paper::-webkit-scrollbar-thumb {
+  background: #e95383;
+  border-radius: 999px;
+}
+
+.envelope.open .letter-paper {
+  transform: translateY(-190px);
+}
+
+@media (max-width: 620px) {
+  .letter-wrapper {
+    min-height: calc(100vh - 70px);
+    padding: 190px 0 70px;
+  }
+
+  .letter-paper {
+    left: 4%;
+    width: 92%;
+    height: min(520px, 64vh);
+    max-height: 520px;
+    padding: 22px 18px;
+  }
+
+  .letter-paper h2 {
+    font-size: 1.9rem;
+  }
+
+  .letter-paper p {
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+
+  .envelope.open .letter-paper {
+    transform: translateY(-175px);
+  }
+}
